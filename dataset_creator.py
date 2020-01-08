@@ -38,10 +38,10 @@ def gen_data():
     data_matrix = np.vstack((data_zero, data_one))
     np.random.shuffle(data_matrix)
 
-    plt.scatter(x_zero, y_zero)
-    plt.scatter(x_one, y_one)
-    plt.legend(labels=['zero', 'one'])
-    plt.show()
+#    plt.scatter(x_zero, y_zero)
+#    plt.scatter(x_one, y_one)
+#    plt.legend(labels=['zero', 'one'])
+#    plt.show()
 
     return data_matrix
 
