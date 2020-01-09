@@ -65,3 +65,36 @@ def compute_cost(y, h):
 def sigmoid(x):
     """returns sigmoid of single value, or piece-wise sigmoid of matrix"""
     return (1/(1+np.exp(-x)))
+
+
+
+def plot_prediction_domain_4D(Theta_1, Theta_2):
+    a = 100
+    b = 140
+    m = 0
+    x_zero_space = np.linspace(0, 10, a)
+    x_one_space = np.linspace(0, 14, b)
+    my_mesh_vec = np.zeros((a*b,5))
+    for i in range(a):
+        for j in range(b):
+            my_mesh_vec[m,0] = x_zero_space[i]
+            my_mesh_vec[m,1] = x_one_space[j]
+            m += 1
+
+    my_mesh_vec[:, 2] = np.power(my_mesh_vec[:,0], 2)
+    my_mesh_vec[:, 3] = np.power(my_mesh_vec[:,1], 2)
+
+    m = a*b
+
+    for i in range(m):
+        x_vec = my_mesh_vec[i, :-1].reshape(-1, 1)
+        pred, ignore = feed_fwd(x_vec, Theta_1, Theta_2)
+        my_mesh_vec[i, 4] = pred
+
+#    my_mesh_vec = my_mesh_vec[(my_mesh_vec[:,4] < 0.7) & (my_mesh_vec[:,4] > 0.3), :]
+    my_mesh_vec = my_mesh_vec[my_mesh_vec[:,4] < 0.5]
+    plt.scatter(my_mesh_vec[:,0], my_mesh_vec[:,1])
+
+
+
+
