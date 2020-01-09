@@ -11,8 +11,8 @@ m = data.shape[0]
 Theta_1 = np.random.rand(4, 3)
 Theta_2 = np.random.rand(1, 5)
 
-alpha = 1
-convergence_target = 0.00000001
+alpha = 0.1
+convergence_target = 0.005
 cur_convergence = 99999999999
 J_history = []
 
@@ -22,7 +22,7 @@ while cur_convergence > convergence_target:
     Delta_1 = np.full_like(Theta_1, 0)
     Delta_2 = np.full_like(Theta_2, 0)
 
-    for i in range(1):
+    for i in range(m):
         x_vec = data[i, [0, 1]].reshape(-1, 1) #2x1
         y = data[i, 2]
         h, A_2 = feed_fwd(x_vec, Theta_1, Theta_2)
